@@ -10,7 +10,7 @@ bundy.remove_command('help')
 
 @bundy.event
 async def on_ready(): 
-	await bundy.change_presence(game=discord.Game(name='Killing Weeaboos | >help'))
+	await bundy.change_presence(game=discord.Game(name='Killing Weeaboos | >help', type=1))
 	print("Bundy v1 ONLINE")
 
 #-----REAL COMMANDS-------#

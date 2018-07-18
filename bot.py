@@ -41,8 +41,10 @@ async def help(ctx):
 		colour = discord.Colour.red()
 	)
 	embed.set_author(name='Help')
-	embed.add_field(name='>info', value='Shows Info About Patton-Bot', inline=False)
+	embed.add_field(name='>clear', value='Clears a specific amount of messages', inline=False)
+	embed.add_field(name='>info', value='Shows Info About Bundy', inline=False)
 	embed.add_field(name='>say', value='Tell the Bot what to Say!', inline=False)
+	embed.add_field(name='>shutdown', value='Shutdown Bundy', inline=False)
 	embed.add_field(name='>vin', value='Eternal Virtue', inline=False)
 	await bundy.say(embed=embed)
 

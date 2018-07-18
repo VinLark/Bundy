@@ -2,7 +2,6 @@ import discord
 import youtube_dl
 from discord.ext import commands
 
-TOKEN = ''
 
 bundy = commands.Bot(command_prefix= '>')
 bundy.remove_command('help')
@@ -13,7 +12,7 @@ async def on_ready():
 	await bundy.change_presence(game=discord.Game(name='Killing Weeaboos | >help', type=1))
 	print("Bundy v1 ONLINE")
 
-#-----REAL COMMANDS-------#
+#-----BASIC COMMANDS-------#
 
 @bundy.command()
 async def vin():
@@ -47,6 +46,17 @@ async def help(ctx):
 	embed.add_field(name='>vin', value='Eternal Virtue', inline=False)
 	await bundy.say(embed=embed)
 
+@bundy.command(pass_context=True)
+async def clear(ctx, amount=100):
+	channel = ctx.message.channel
+	messages = []
+	async for message in bundy.logs_from(channel, limit=int(amount)):
+		messages.append(message)
+	await bundy.delete_messages(messages)
+	await bundy.say("Messages deleted.")
+
+
+
 #-----VOICE/MUSIC COMMANDS-----------#
 
 @bundy.command(pass_context=True)
@@ -71,4 +81,4 @@ async def play(ctx, url):
 	player.start()
 
 
-bundy.run(TOKEN)
+bundy.run(:^)

@@ -55,11 +55,13 @@ async def clear(ctx, amount=100):
 	await bundy.delete_messages(messages)
 	await bundy.say("Messages deleted.")
 
-@bundy.command()
-async def shutdown():
-	await bundy.say("Shutting Down...")
-	await bundy.logout()
-
+@bundy.command(pass_context=True)
+async def shutdown(ctx):
+	if ctx.message.author.id == "186703562053648384":
+		await bundy.say("Shutting Down...")
+		await bundy.logout()
+	else:
+		await bundy.say("You Do Not Have Permission To Do This")
 
 
 #-----VOICE/MUSIC COMMANDS-----------#

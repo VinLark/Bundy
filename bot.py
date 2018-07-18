@@ -55,6 +55,11 @@ async def clear(ctx, amount=100):
 	await bundy.delete_messages(messages)
 	await bundy.say("Messages deleted.")
 
+@bundy.command()
+async def shutdown():
+	await bundy.say("Shutting Down...")
+	await bundy.logout()
+
 
 
 #-----VOICE/MUSIC COMMANDS-----------#

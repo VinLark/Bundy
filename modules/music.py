@@ -6,8 +6,6 @@ class music:
     def __init__(self, bundy):
         self.bundy = bundy
 
-    #@commands.command()
-
     @commands.command(pass_context=True)
     async def join(self, ctx):
         channel = ctx.message.author.voice.voice_channel
@@ -19,14 +17,14 @@ class music:
         voice_client = self.bundy.voice_client_in(server)
         await voice_client.disconnect()
 
-#    players = {}
-#    @commands.command(pass_context=True)
-#    async def play(self, ctx, url):
-#        server = ctx.message.server
-#        voice_client = self.bundy.voice_client_in(server)
-#        player = await voice_client.create_ytdl_player(url)
-#        players[server.id] = player
-#        player.start()
+    @commands.command(pass_context=True)
+    async def play(self, ctx, url):
+        players = {}
+        server = ctx.message.server
+        voice_client = self.bundy.voice_client_in(server)
+        player = await voice_client.create_ytdl_player(url)
+        players[server.id] = player
+        player.start()
 
 
 def setup(bundy):

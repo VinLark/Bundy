@@ -2,6 +2,7 @@ import discord
 import youtube_dl
 from discord.ext import commands
 
+
 bundy = commands.Bot(command_prefix= '>')
 bundy.remove_command('help')
 
@@ -27,19 +28,6 @@ if __name__ == '__main__':
 			bundy.load_extension(extension)
 		except Exception as error:
 			print('{} cannot be loaded. [{}]'.format(extension, error))
-
-#----SAMPLE COMMANDS-----#
-
-#@bundy.event
-#async def on_message(combob):
-#	print("GAY")
-
-#@bundy.event
-#async def on_message_delete(message):
-#	channel = message.channel
-#	await bundy.send_message(channel, 'bird lol')
-
-#-----BASIC COMMANDS-------#
 
 @bundy.command()
 async def vin():
@@ -96,30 +84,7 @@ async def shutdown(ctx):
 	else:
 		await bundy.say("You Do Not Have Permission To Do This")
 
-#-----VOICE/MUSIC COMMANDS-----------#
-
-#@bundy.command(pass_context=True)
-#async def join(ctx):
-	#channel = ctx.message.author.voice.voice_channel
-	#await bundy.join_voice_channel(channel)
-
-#@bundy.command(pass_context=True)
-#async def leave(ctx):
-	#server = ctx.message.server
-	#voice_client = bundy.voice_client_in(server)
-	#await voice_client.disconnect()
-
-
-players = {}
-@bundy.command(pass_context=True)
-async def play(ctx, url):
-	server = ctx.message.server
-	voice_client = bundy.voice_client_in(server)
-	player = await voice_client.create_ytdl_player(url)
-	players[server.id] = player
-	player.start()
 
 
 
-
-bundy.run(dab)
+bundy.run()

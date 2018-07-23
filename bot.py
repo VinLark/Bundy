@@ -2,15 +2,42 @@ import discord
 import youtube_dl
 from discord.ext import commands
 
-
 bundy = commands.Bot(command_prefix= '>')
 bundy.remove_command('help')
 
+extensions = ['modules.music']
 
 @bundy.event
-async def on_ready(): 
+async def on_ready():
+
 	await bundy.change_presence(game=discord.Game(name='Killing Weeaboos | >help', type=1))
 	print("Bundy v1 ONLINE")
+
+@bundy.command()
+async def load(extension):
+	try:
+		bundy.load_extension(extension)
+		print('Loaded {}'.format(extension))
+	except Exception as error:
+		print('{} cannot be loaded. [{}]'.format(extension, error))
+
+if __name__ == '__main__':
+	for extension in extensions:
+		try:
+			bundy.load_extension(extension)
+		except Exception as error:
+			print('{} cannot be loaded. [{}]'.format(extension, error))
+
+#----SAMPLE COMMANDS-----#
+
+#@bundy.event
+#async def on_message(combob):
+#	print("GAY")
+
+#@bundy.event
+#async def on_message_delete(message):
+#	channel = message.channel
+#	await bundy.send_message(channel, 'bird lol')
 
 #-----BASIC COMMANDS-------#
 
@@ -30,7 +57,7 @@ async def say(*args):
 async def info():
         embed = discord.Embed(title="Info about Patton-Bot", description="Patton-Bot is a bot written by Patton#6790", color=0x164084)
         embed.add_field(name="Website", value="https://repo.vinlark.info/patton-bot", inline=False)
-        embed.add_field(name="Github", value="https://github.com/VinLark/Patton-Bot", inline=False)
+        embed.add_field(name="Github", value="https://github.com/VinLark/Bundy", inline=False)
         await bundy.say(embed=embed)
 
 @bundy.command(pass_context=True)
@@ -50,12 +77,16 @@ async def help(ctx):
 
 @bundy.command(pass_context=True)
 async def clear(ctx, amount=100):
-	channel = ctx.message.channel
-	messages = []
-	async for message in bundy.logs_from(channel, limit=int(amount)):
-		messages.append(message)
-	await bundy.delete_messages(messages)
-	await bundy.say("Messages deleted.")
+	if ctx.message.author.id == "186703562053648384":
+		channel = ctx.message.channel
+		messages = []
+		async for message in bundy.logs_from(channel, limit=int(amount)):
+			messages.append(message)
+		await bundy.delete_messages(messages)
+		await bundy.say("Messages deleted.")
+	else:
+		await bundy.say("You Do Not Have Permission To Do This")
+
 
 @bundy.command(pass_context=True)
 async def shutdown(ctx):
@@ -65,19 +96,18 @@ async def shutdown(ctx):
 	else:
 		await bundy.say("You Do Not Have Permission To Do This")
 
-
 #-----VOICE/MUSIC COMMANDS-----------#
 
-@bundy.command(pass_context=True)
-async def join(ctx):
-	channel = ctx.message.author.voice.voice_channel
-	await bundy.join_voice_channel(channel)
+#@bundy.command(pass_context=True)
+#async def join(ctx):
+	#channel = ctx.message.author.voice.voice_channel
+	#await bundy.join_voice_channel(channel)
 
-@bundy.command(pass_context=True)
-async def leave(ctx):
-	server = ctx.message.server
-	voice_client = bundy.voice_client_in(server)
-	await voice_client.disconnect()
+#@bundy.command(pass_context=True)
+#async def leave(ctx):
+	#server = ctx.message.server
+	#voice_client = bundy.voice_client_in(server)
+	#await voice_client.disconnect()
 
 
 players = {}
@@ -90,4 +120,6 @@ async def play(ctx, url):
 	player.start()
 
 
-bundy.run(:^)
+
+
+bundy.run(dab)

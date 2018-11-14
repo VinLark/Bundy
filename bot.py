@@ -43,9 +43,9 @@ async def say(*args):
 
 @bundy.command()
 async def info():
-        embed = discord.Embed(title="Info about Patton-Bot", description="Patton-Bot is a bot written by Patton#6790", color=0x164084)
-        embed.add_field(name="Website", value="https://repo.vinlark.info/patton-bot", inline=False)
-        embed.add_field(name="Github", value="https://github.com/VinLark/Bundy", inline=False)
+        embed = discord.Embed(title="Info about Bundy", description="Bundy is a bot written by Patton#6790", color=0x164084)
+        embed.add_field(name="Website", value="https://repo.vincentxii.us/bundy", inline=False)
+        embed.add_field(name="Github", value="https://github.com/VincentXII/Bundy", inline=False)
         await bundy.say(embed=embed)
 
 @bundy.command(pass_context=True)
